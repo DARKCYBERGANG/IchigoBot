@@ -1,3 +1,6 @@
+![Ichigo](https://telegra.ph/file/bfc7b154b94ad1f42a79c.jpg)
+
+
 # How to deploy?
 
 # IchigoBot
@@ -6,7 +9,7 @@
 
 A modular Telegram Python bot running on python3 with an sqlalchemy database.
 
-Can be found on telegram as [GroupManager](https://t.me/IchiigoBot).
+Can be found on telegram as [Ichigo](https://t.me/IchiigoBot).
 
 Alternatively, [find me on telegram](https://t.me/Saitama_0110)! (Keep all support questions in the support chat, where more people can help you.)
 
