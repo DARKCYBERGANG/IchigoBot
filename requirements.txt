@@ -32,3 +32,5 @@ pyrate-limiter
 cachetools
 ujson
 pretty_errors
+youtube_dl
+youtube-search-python
