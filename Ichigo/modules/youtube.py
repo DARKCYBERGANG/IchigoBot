@@ -1,11 +1,11 @@
 import os, glob, json
 
-from AstrakoBot.modules.sql.clear_cmd_sql import get_clearcmd
+from Ichigo.modules.sql.clear_cmd_sql import get_clearcmd
 from telegram import Bot, Update, ParseMode, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import CommandHandler, CallbackQueryHandler, CallbackContext, run_async
-from AstrakoBot import dispatcher
-from AstrakoBot.modules.disable import DisableAbleCommandHandler
-from AstrakoBot.modules.helper_funcs.misc import delete
+from Ichigo import dispatcher
+from Ichigo.modules.disable import DisableAbleCommandHandler
+from Ichigo.modules.helper_funcs.misc import delete
 from youtubesearchpython import SearchVideos
 
 from youtube_dl import YoutubeDL
