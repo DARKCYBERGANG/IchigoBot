@@ -9,6 +9,10 @@ from Ichigo.modules.helper_funcs.misc import delete
 from youtubesearchpython import SearchVideos
 
 from youtube_dl import YoutubeDL
+from youtube_dl.utils import (DownloadError, ContentTooShortError,
+                              ExtractorError, GeoRestrictedError,
+                              MaxDownloadsReached, PostProcessingError,
+                              UnavailableVideoError, XAttrMetadataError)
 
 
 def youtube(update: Update, context: CallbackContext):
