@@ -1,163 +1,278 @@
-import os, glob, json
+from pathlib import Path
+import asyncio, time, io, math, os, logging, asyncio, shutil, re, subprocess, json
+from re import findall
+from asyncio import sleep
+from telethon.events import NewMessage
+from telethon.tl.custom import Dialog
+from datetime import datetime as dt
+from pytz import country_names as c_n, country_timezones as c_tz, timezone as tz
+from hachoir.parser import createParser
+import pybase64
+from base64 import b64decode
+from pySmartDL import SmartDL
+from telethon.tl.types import DocumentAttributeVideo, DocumentAttributeAudio
+from telethon import events
 
-from Ichigo.modules.sql.clear_cmd_sql import get_clearcmd
-from telegram import Bot, Update, ParseMode, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import CommandHandler, CallbackQueryHandler, CallbackContext, run_async
-from Ichigo import dispatcher
-from Ichigo.modules.disable import DisableAbleCommandHandler
-from Ichigo.modules.helper_funcs.misc import delete
-from youtubesearchpython import SearchVideos
-
+from Ichigo.event import register
+from Ichigo.utils import progress
+from telethon.errors.rpcerrorlist import YouBlockedUserError
+from telethon.tl.functions.messages import ImportChatInviteRequest as Get
+from validators.url import url
+from html import unescape
+from urllib.error import HTTPError
+import bs4
+from bs4 import BeautifulSoup
 from youtube_dl import YoutubeDL
+
 from youtube_dl.utils import (DownloadError, ContentTooShortError,
+
                               ExtractorError, GeoRestrictedError,
                               MaxDownloadsReached, PostProcessingError,
                               UnavailableVideoError, XAttrMetadataError)
 
+try:
 
-def youtube(update: Update, context: CallbackContext):
-    bot = context.bot
-    message = update.effective_message
-    chat = update.effective_chat
-    yt = message.text[len("/youtube ") :]
-    if yt:
-        search = SearchVideos(yt, offset=1, mode="json", max_results=1)
-        test = search.result()
-        
-        try:
-            p = json.loads(test)
-        except:
-            return message.reply_text(
-                "Failed to find song or video", 
-                parse_mode = ParseMode.MARKDOWN
-            )
-        
-        q = p.get("search_result")
-        url = q[0]["link"]
-        title = q[0]["title"]
+   from youtubesearchpython import SearchVideos 
 
-        buttons = [
-            [
-                InlineKeyboardButton("Song", callback_data=f"youtube;audio;{url}"),
-                InlineKeyboardButton("Video", callback_data=f"youtube;video;{url}"),
-            ]
-        ]
+except:
+	os.system("pip install pip install youtube-search-python")
+	from youtubesearchpython import SearchVideos 
+	pass
 
-        msg = "*Preparing to upload file:*\n"
-        msg += f"`{title}`\n"
-        delmsg = message.reply_text(
-            msg, 
-            parse_mode=ParseMode.MARKDOWN,            
-            reply_markup = InlineKeyboardMarkup(buttons)
-        )
+@register(pattern="^/song (.*)")
+async def download_video(v_url):
+
+    lazy = v_url ; sender = await lazy.get_sender() ; me = await lazy.client.get_me()
+
+    if not sender.id == me.id:
+        rkp = await lazy.reply("`processing...`")
     else:
-        delmsg = message.reply_text("Specify a song or video"
-        )
-
-    cleartime = get_clearcmd(chat.id, "youtube")
-    
-    if cleartime:
-        context.dispatcher.run_async(delete, delmsg, cleartime.time)
-
-def youtube_callback(update: Update, context: CallbackContext):
-    bot = context.bot
-    message = update.effective_message
-    chat = update.effective_chat
-    query = update.callback_query
-
-    media = query.data.split(";")
-    media_type = media[1]
-    media_url = media[2]
-    
-    if media_type == "audio":    
-        opts = {
-        "format": "bestaudio/best",
-        "addmetadata": True,
-        "key": "FFmpegMetadata",
-        "writethumbnail": False,
-        "prefer_ffmpeg": True,
-        "geo_bypass": True,
-        "nocheckcertificate": True,
-        "postprocessors": [
-            {
-                "key": "FFmpegExtractAudio",
-                "preferredcodec": "mp3",
-                "preferredquality": "192",
-            }
-        ],
-        "outtmpl": "%(id)s.mp3",
-        "quiet": True,
-        "logtostderr": False,
-        }
-        
-        codec = "mp3"
-
-        with YoutubeDL(opts) as rip:
-            rip_data = rip.extract_info(media_url)
-            
-            try:
-                delmsg = message.reply_audio(
-                audio = open(f"{rip_data['id']}.{codec}", "rb"),
-                duration = int(rip_data['duration']),
-                title = str(rip_data['title']),
-                parse_mode = ParseMode.HTML)
-            except:
-                delmsg = message.reply_text(
-                    "Song is too large for processing, or any other error happened. Try again later"
-                )
-
-    else:
-        opts = {
-        "format": "best",
-        "addmetadata": True,
-        "key": "FFmpegMetadata",
-        "prefer_ffmpeg": True,
-        "geo_bypass": True,
-        "nocheckcertificate": True,
-        "postprocessors": [{"key": "FFmpegVideoConvertor", "preferedformat": "mp4"}],
-        "outtmpl": "%(id)s.mp4",
-        "logtostderr": False,
-        "quiet": True,
-        }
-
-        codec = "mp4"
-
-        with YoutubeDL(opts) as rip:
-            rip_data = rip.extract_info(media_url)
-            
-            try:
-                delmsg = message.reply_video(
-                video = open(f"{rip_data['id']}.{codec}", "rb"),
-                duration = int(rip_data['duration']),
-                caption = rip_data['title'],
-                supports_streaming = True,
-                parse_mode = ParseMode.HTML)
-            except:
-                delmsg = message.reply_text(
-                    "Video is too large for processing, or any other error happened. Try again later"
-                )
-
+    	rkp = await lazy.edit("`processing...`")   
+    url = v_url.pattern_match.group(1)
+    if not url:
+         return await rkp.edit("`Error \nusage song <song name>`")
+    search = SearchVideos(url, offset = 1, mode = "json", max_results = 1)
+    test = search.result()
+    p = json.loads(test)
+    q = p.get('search_result')
     try:
-        os.remove(f"{rip_data['id']}.{codec}")
-    except Exception:
-        pass
+       url = q[0]['link']
+    except:
+    	return await rkp.edit("`failed to find`")
+    type = "audio"
+    await rkp.edit("`Preparing to download...⚡️`")
+    if type == "audio":
+        opts = {
+            'format':
+            'bestaudio',
+            'addmetadata':
+            True,
+            'key':
+            'FFmpegMetadata',
+            'writethumbnail':
+            True,
+            'prefer_ffmpeg':
+            True,
+            'geo_bypass':
+            True,
+            'nocheckcertificate':
+            True,
+            'postprocessors': [{
+                'key': 'FFmpegExtractAudio',
+                'preferredcodec': 'mp3',
+                'preferredquality': '320',
+            }],
+            'outtmpl':
+            '%(id)s.mp3',
+            'quiet':
+            True,
+            'logtostderr':
+            False
+        }
+        video = False
+        song = True    
+    try:
+        await rkp.edit("`⚡️ Fetching data, please wait..`")
+        with YoutubeDL(opts) as rip:
+            rip_data = rip.extract_info(url)
+    except DownloadError as DE:
+        await rkp.edit(f"`{str(DE)}`")
+        return
+    except ContentTooShortError:
+        await rkp.edit("`The download content was too short :P`")
+        return
+    except GeoRestrictedError:
+        await rkp.edit(
+            "`Video is not available from your geographic location due to geographic restrictions imposed by a website.`"
+        )
+        return
+    except MaxDownloadsReached:
+        await rkp.edit("`Max-downloads limit has been reached.`")
+        return
+    except PostProcessingError:
+        await rkp.edit("`There was an error during post processing.`")
+        return
+    except UnavailableVideoError:
+        await rkp.edit("`Media is not available in the requested format.`")
+        return
+    except XAttrMetadataError as XAME:
+        await rkp.edit(f"`{XAME.code}: {XAME.msg}\n{XAME.reason}`")
+        return
+    except ExtractorError:
+        await rkp.edit("`There was an error during info extraction.`")
+        return
+    except Exception as e:
+        await rkp.edit(f"{str(type(e)): {str(e)}}")
+        return
+    c_time = time.time()
+    if song:
+        await rkp.edit(f"`⚡️ Preparing to upload song:`\
+        \n**{rip_data['title']}**\
+        \nby *{rip_data['uploader']}*")
+        await v_url.client.send_file(
+            v_url.chat_id,
+            f"{rip_data['id']}.mp3",
+            supports_streaming=True,
+            attributes=[
+                DocumentAttributeAudio(duration=int(rip_data['duration']),
+                                       title=str(rip_data['title']),
+                                       performer=str(rip_data['uploader']))
+            ],
+            progress_callback=lambda d, t: asyncio.get_event_loop(
+            ).create_task(
+                progress(d, t, v_url, c_time, "Uploading..",
+                         f"{rip_data['title']}.mp3")))
+        os.remove(f"{rip_data['id']}.mp3")
+    elif video:
+        await rkp.edit(f"`⚡️ Preparing to upload song :`\
+        \n**{rip_data['title']}**\
+        \nby *{rip_data['uploader']}*")
+        await v_url.client.send_file(
+            v_url.chat_id,
+            f"{rip_data['id']}.mp4",
+            supports_streaming=True,
+            caption=url,
+            progress_callback=lambda d, t: asyncio.get_event_loop(
+            ).create_task(
+                progress(d, t, v_url, c_time, "Uploading..",
+                         f"{rip_data['title']}.mp4",
+			 caption=f"<b>➥ Song :- <code>{title}</code></b>",
+                         parse_mode="html")))
+        os.remove(f"{rip_data['id']}.mp4")
 
-    cleartime = get_clearcmd(chat.id, "youtube")
-    
-    if cleartime:
-        context.dispatcher.run_async(delete, delmsg, cleartime.time)
 
-
-YOUTUBE_HANDLER = DisableAbleCommandHandler(["youtube", "yt"], youtube)
-YOUTUBE_CALLBACKHANDLER = CallbackQueryHandler(
-    youtube_callback, pattern="youtube*"
-)
-dispatcher.add_handler(YOUTUBE_HANDLER)
-dispatcher.add_handler(YOUTUBE_CALLBACKHANDLER)
-
-__help__ = """
-*Available Commands:*\n
- • `/youtube`, `/yt` `<song or video name>`: download songs or videos from youtube in standar quality
-"""
-__mod_name__ = "Youtube"
-__command_list__ = ["song", "video"]
+@register(pattern="^/video (.*)")
+async def download_video(v_url):  
+    lazy = v_url ; sender = await lazy.get_sender() ; me = await lazy.client.get_me()
+    if not sender.id == me.id:
+        rkp = await lazy.reply("`processing...`")
+    else:
+    	rkp = await lazy.edit("`processing...`")   
+    url = v_url.pattern_match.group(1)
+    if not url:
+         return await rkp.edit("`Error \nusage song <song name>`")
+    search = SearchVideos(url, offset = 1, mode = "json", max_results = 1)
+    test = search.result()
+    p = json.loads(test)
+    q = p.get('search_result')
+    try:
+       url = q[0]['link']
+    except:
+    	return await rkp.edit("`failed to find`")
+    type = "audio"
+    await rkp.edit("`⚡️ Preparing to download...`")
+    if type == "audio":
+        opts = {
+            'format':
+            'best',
+            'addmetadata':
+            True,
+            'key':
+            'FFmpegMetadata',
+            'prefer_ffmpeg':
+            True,
+            'geo_bypass':
+            True,
+            'nocheckcertificate':
+            True,
+            'postprocessors': [{
+                'key': 'FFmpegVideoConvertor',
+                'preferedformat': 'mp4'
+            }],
+            'outtmpl':
+            '%(id)s.mp4',
+            'logtostderr':
+            False,
+            'quiet':
+            True
+        }
+        song = False
+        video = True
+    try:
+        await rkp.edit("`⚡️ Fetching data, please wait..`")
+        with YoutubeDL(opts) as rip:
+            rip_data = rip.extract_info(url)
+    except DownloadError as DE:
+        await rkp.edit(f"`{str(DE)}`")
+        return
+    except ContentTooShortError:
+        await rkp.edit("`The download content was too short.`")
+        return
+    except GeoRestrictedError:
+        await rkp.edit(
+            "`Video is not available from your geographic location due to geographic restrictions imposed by a website.`"
+        )
+        return
+    except MaxDownloadsReached:
+        await rkp.edit("`Max-downloads limit has been reached.`")
+        return
+    except PostProcessingError:
+        await rkp.edit("`There was an error during post processing.`")
+        return
+    except UnavailableVideoError:
+        await rkp.edit("`Media is not available in the requested format.`")
+        return
+    except XAttrMetadataError as XAME:
+        await rkp.edit(f"`{XAME.code}: {XAME.msg}\n{XAME.reason}`")
+        return
+    except ExtractorError:
+        await rkp.edit("`There was an error during info extraction.`")
+        return
+    except Exception as e:
+        await rkp.edit(f"{str(type(e)): {str(e)}}")
+        return
+    c_time = time.time()
+    if song:
+        await rkp.edit(f"`Preparing to upload song `\
+        \n**{rip_data['title']}**\
+        \nby *{rip_data['uploader']}*")
+        await v_url.client.send_file(
+            v_url.chat_id,
+            f"{rip_data['id']}.mp3",
+            supports_streaming=True,
+            attributes=[
+                DocumentAttributeAudio(duration=int(rip_data['duration']),
+                                       title=str(rip_data['title']),
+                                       performer=str(rip_data['uploader']))
+            ],
+            progress_callback=lambda d, t: asyncio.get_event_loop(
+            ).create_task(
+                progress(d, t, v_url, c_time, "Uploading..",
+                         f"{rip_data['title']}.mp3")))
+        os.remove(f"{rip_data['id']}.mp3")
+        await v_url.delete()
+    elif video:
+        await rkp.edit(f"`Preparing to upload video song :`\
+        \n**{rip_data['title']}**\
+        \nby *{rip_data['uploader']}*")
+        await v_url.client.send_file(
+            v_url.chat_id,
+            f"{rip_data['id']}.mp4",
+            supports_streaming=True,
+            caption=rip_data['title'],
+            progress_callback=lambda d, t: asyncio.get_event_loop(
+            ).create_task(
+                progress(d, t, v_url, c_time, "Uploading..",
+                         f"{rip_data['title']}.mp4")))
+        os.remove(f"{rip_data['id']}.mp4")
+        await rkp.delete()
