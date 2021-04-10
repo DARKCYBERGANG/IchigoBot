@@ -14,7 +14,6 @@ RUN apt update && apt upgrade -y && \
     bzip2 \
     curl \
     figlet \
-    ffmpeg \
     git \
     util-linux \
     libffi-dev \
@@ -61,8 +60,6 @@ RUN apt update && apt upgrade -y && \
     libopus0 \
     libopus-dev \
     && rm -rf /var/lib/apt/lists /var/cache/apt/archives /tmp
-
-Run nix-env -i ffmpeg
 
 # Pypi package Repo upgrade
 RUN pip3 install --upgrade pip setuptools
