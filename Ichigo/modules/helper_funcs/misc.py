@@ -132,4 +132,4 @@ def delete(delmsg, timer):
     try:
         delmsg.delete()
     except:
-        return
+        return 
