@@ -17,7 +17,6 @@ RUN apt update && apt upgrade -y && \
     ffmpeg \
     git \
     util-linux \
-    libav-tools \
     libffi-dev \
     libjpeg-dev \
     libjpeg62-turbo-dev \
