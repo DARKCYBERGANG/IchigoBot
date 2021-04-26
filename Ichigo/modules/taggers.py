@@ -3,7 +3,7 @@ from telegram.error import BadRequest
 from telegram.ext import CallbackQueryHandler, CommandHandler, Filters, run_async
 from telegram.utils.helpers import mention_html
 
-from Ichigp import dispatcher
+from Ichigo import dispatcher
 from Ichigo.modules.disable import DisableAbleCommandHandler
 from Ichigo.modules.helper_funcs.alternate import typing_action
 from Ichigo.modules.helper_funcs.chat_status import bot_admin, user_admin
