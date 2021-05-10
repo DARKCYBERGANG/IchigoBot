@@ -5,8 +5,7 @@
 
 # IchigoBot
 
-[![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FDARKCYBERGANG%2FIchigoBot)
-
+<p align="center"><a href="https://heroku.com/deploy?template=https://github.com/edguru/YoneRobot"> <img src="https://img.shields.io/badge/Deploy%20To%20Heroku-black?style=for-the-badge&logo=heroku" width="220" height="38.45"/></a></p>
 A modular Telegram Python bot running on python3 with an sqlalchemy database.
 
 Can be found on telegram as [Ichigo](https://t.me/IchiigoBot).
