@@ -178,7 +178,7 @@ else:
 
 updater = tg.Updater(TOKEN, workers=WORKERS, use_context=True)
 telethn = TelegramClient("Ichigo", API_ID, API_HASH)
-pbot = Client("Ichigo", API_IDD=APIM, API_HASHH=HASHM, TOKEN=TOKEN , plugins=dict(root= "Ichigo.handlers"))
+pbot = Client("Ichigo", api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN , plugins=dict(root= "Ichigo.handlers"))
 dispatcher = updater.dispatcher
 
 DRAGONS = list(DRAGONS) + list(DEV_USERS)
