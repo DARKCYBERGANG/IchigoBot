@@ -20,4 +20,4 @@ def on_stream_end(chat_id: int) -> None:
         )
 
 
-Runn= pytgcalls.run
+Run = pytgcalls.run
