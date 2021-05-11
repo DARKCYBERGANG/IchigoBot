@@ -187,11 +187,6 @@
          "required": false,
          "value": "CAACAgQAAx0CU_rCTAABAczQXyBOv1TsVK4EfwnkCUT1H0GCkPQAAtwAAwEgTQaYsMtAltpEwhoE"
       },
-      "SESSION_M": {
-         "description": "Pyrogram string session of your music account. Keep the add to group privacy off",
-         "required": "True",
-         "value": ""
-      },
       "APIM": {
          "description": "MUSIC ACCOUNT API ID",
          "required": "True",
