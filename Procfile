@@ -1,3 +1,3 @@
-worker: python3 -m IchigoBot
-web: python3 -m IchigoBot
+worker: python3 -m Ichigo
+web: python3 -m Ichigo
 ps:scale worker=1
