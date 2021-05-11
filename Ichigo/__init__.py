@@ -71,6 +71,8 @@ if ENV:
     SESSION_NAME = os.environ.get("SESSION_NAME", "session")
     API_IDD = os.environ.get("APIM")
     API_HASHH = os.environ.get("HASHM")
+    DURATION_LIMIT = int(getenv("DURATION_LIMIT", "7"))
+    COMMAND_PREFIXES = list(getenv("COMMAND_PREFIXES", "/ !").split())
     DB_URI = os.environ.get("DATABASE_URL")
     MONGO_DB_URI = os.environ.get("MONGO_DB_URI", None)
     DONATION_LINK = os.environ.get("DONATION_LINK")
