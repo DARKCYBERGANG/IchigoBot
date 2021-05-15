@@ -2,13 +2,14 @@ from typing import Callable
 
 from Ichigo import pbot , DRAGONS
 from pyrogram.types import Message
+from pyrogram import Client
 
 from ..helpers.admins import get_administrators
 
 
 
 def errors(func: Callable) -> Callable:
-    async def decorator(client: pbot, message: Message):
+    async def decorator(client: Client, message: Message):
         try:
             return await func(client, message)
         except Exception as e:
@@ -18,7 +19,7 @@ def errors(func: Callable) -> Callable:
 
 
 def authorized_users_only(func: Callable) -> Callable:
-    async def decorator(client: pbot, message: Message):
+    async def decorator(client: Client, message: Message):
         if message.from_user.id in DRAGONS :
             return await func(client, message)
 
