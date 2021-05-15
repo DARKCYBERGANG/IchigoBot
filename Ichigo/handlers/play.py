@@ -1,6 +1,7 @@
 from os import path
 
 from Ichigo import pbot
+from pyrogram import Client
 from pyrogram.types import Message
 
 from ..callsmusic import callsmusic
@@ -13,7 +14,7 @@ from ..helpers.gets import get_url, get_file_name
 from .. import queues
 
 
-@pbot.on_message(command("play") & other_filters)
+@Client.on_message(command("play") & other_filters)
 @errors
 async def play(_, message: Message):
     audio = (message.reply_to_message.audio or message.reply_to_message.voice) if message.reply_to_message else None
