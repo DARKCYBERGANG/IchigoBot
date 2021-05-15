@@ -1,10 +1,11 @@
 from Ichigo import pbot
+from pyrogram import Client
 from pyrogram.types import ChatMemberUpdated
 
 from .. import admins
 
 
-@pbot.on_chat_member_updated()
+@Client.on_chat_member_updated()
 async def chat_member_updated(_, chat_member_updated: ChatMemberUpdated):
     (
         admins.admins[chat_member_updated.chat.id].append(
