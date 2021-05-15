@@ -1,6 +1,7 @@
 from asyncio.queues import QueueEmpty
 
 from Ichigo import pbot
+from pyrogram import Client
 from pyrogram.types import Message
 
 from ..callsmusic import callsmusic
@@ -8,7 +9,7 @@ from ..helpers.filters import command, other_filters
 from ..helpers.decorators import errors, authorized_users_only
 
 
-@pbot.on_message(command("pause") & other_filters)
+@Client.on_message(command("pause") & other_filters)
 @errors
 @authorized_users_only
 async def pause(_, message: Message):
@@ -23,7 +24,7 @@ async def pause(_, message: Message):
         await message.reply_text("Paused!")
 
 
-@pbot.on_message(command("resume") & other_filters)
+@Client.on_message(command("resume") & other_filters)
 @errors
 @authorized_users_only
 async def resume(_, message: Message):
@@ -38,7 +39,7 @@ async def resume(_, message: Message):
         await message.reply_text("Resumed!")
 
 
-@pbot.on_message(command("stop") & other_filters)
+@Client.on_message(command("stop") & other_filters)
 @errors
 @authorized_users_only
 async def stop(_, message: Message):
@@ -54,7 +55,7 @@ async def stop(_, message: Message):
         await message.reply_text("Stopped streaming!")
 
 
-@pbot.on_message(command("skip") & other_filters)
+@Client.on_message(command("skip") & other_filters)
 @errors
 @authorized_users_only
 async def skip(_, message: Message):
