@@ -46,7 +46,28 @@
       "SESSION_NAME": {
       "description": "Pyrogram session string",
       "required": true
-      }, 
+      },
+      "ADMIN_ONLY": {
+         "description": "Change it to 'N' if you want to make /play and /dplay available for everyone. By default only admins of CHAT can use it.",
+         "value": "Y",
+         "required": false
+      },
+      "ADMINS": {
+         "description": "ID of Users who can use Admin commands(for multiple users seperated by space)",
+         "required": true
+      },
+      "ARQ_API": {
+         "description": "get it for free from @ARQRobot",
+         "required": false
+      },
+      "CHAT": {
+        "description": "ID of Channel or Group where the Bot plays Music",
+        "required": true
+      },
+      "LOG_GROUP": {
+         "description": "ID of the group to send playlist If CHAT is a Group, if channel thenleave blank",
+         "required": false
+      },
       "BOT_NAME": {
       "description": "Your MusicPlayer Bot Name.",
       "required": false,
@@ -75,11 +96,6 @@
          "description": "Your Telegram support group chat username where your users will go and bother you with shit But be like: IchigoSupportetcetc.",
          "required": true,
          "value": "IchigoSupport"
-      },
-      "MONGO_DB_URI": {
-         "description": "Required for database connections.",
-         "required": false,
-         "value": ""
       },
       "EVENT_LOGS": {
          "description": "Event logs channel to note down important bot level events, recommend to make this public. ex: '-123456'",
@@ -187,16 +203,11 @@
          "required": false,
          "value": "CAACAgQAAx0CU_rCTAABAczQXyBOv1TsVK4EfwnkCUT1H0GCkPQAAtwAAwEgTQaYsMtAltpEwhoE"
       },
-      "APIM": {
-         "description": "MUSIC ACCOUNT API ID",
-         "required": "True",
-         "value": ""
+      "STREAM_URL": {
+         "description": "URL of Radio station or Youtube live video url to stream with /radio command",
+         "value": "https://youtu.be/o2JVxn2OqAc",
+         "required": false
       },
-      "HASHM": {
-         "description": "API HASH OF MUSIC ACCOUNT",
-         "required": "True",
-         "value": ""
-        },     
       "WALL_API": {
          "description": "Required for wallpaper. Get your's from https://wall.alphacoders.com/",
          "required": false,
