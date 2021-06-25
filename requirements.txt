@@ -35,14 +35,13 @@ pretty_errors
 fontTools
 fontTools
 gtts
-pyrogram
 nekos.py
 tswift
 pyowm
 tabulate
 parsel
-pyrogram
-tgcrypto
+pyrogram==1.2.9
+Tgcrypto==1.2.2
 telegraph
 pytz
 hachoir
@@ -58,7 +57,10 @@ aiofiles
 asyncio
 youtube_search
 search_engine_parser
-ffmpeg
+ffmpeg-python
 python-arq
 wget
+pytgcalls
+wheel
+
 
