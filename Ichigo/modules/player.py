@@ -1,10 +1,10 @@
 import os
 from youtube_dl import YoutubeDL
-from config import Config
+from Ichigo.config import Config
 from pyrogram import Client, filters, emoji
 from pyrogram.methods.messages.download_media import DEFAULT_DOWNLOAD_DIR
 from pyrogram.types import Message
-from utils import mp, RADIO, USERNAME, FFMPEG_PROCESSES
+from Ichigo.utils import mp, RADIO, USERNAME, FFMPEG_PROCESSES
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from Python_ARQ import ARQ
 from youtube_search import YoutubeSearch
