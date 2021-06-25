@@ -1,8 +1,8 @@
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram import Client, filters
 import signal
-from utils import USERNAME, FFMPEG_PROCESSES
-from config import Config
+from Ichigo.utils import USERNAME, FFMPEG_PROCESSES
+from Ichigo.config import Config
 import os
 import sys
 U=USERNAME
