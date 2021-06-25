@@ -22,4 +22,4 @@ async def stop(_, message: Message):
     await mp.stop_radio()
     await message.reply_text("Radio stream ended.")
     await message.delete()
-© 2021 GitHub, Inc.
+#© 2021 GitHub, Inc.
