@@ -1,7 +1,7 @@
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from pyrogram import Client, emoji
-from utils import mp
-from config import Config
+from Ichigo.utils import mp
+from Ichigo.config import Config
 playlist=Config.playlist
 
 HELP = """
