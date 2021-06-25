@@ -1,5 +1,5 @@
 import os
-from config import Config
+from Ichigo.config import Config
 import ffmpeg
 from pyrogram import emoji
 from pyrogram.methods.messages.download_media import DEFAULT_DOWNLOAD_DIR
