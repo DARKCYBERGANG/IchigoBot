@@ -1,4 +1,4 @@
-rom pyrogram.handlers import InlineQueryHandler
+from pyrogram.handlers import InlineQueryHandler
 from youtubesearchpython import VideosSearch
 from pyrogram.types import InlineQueryResultArticle, InputTextMessageContent
 from pyrogram import Client, errors
