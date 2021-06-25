@@ -675,7 +675,7 @@ if __name__ == "__main__":
     telethn.start(bot_token=TOKEN)
     main()
 
-    from pyrogram import Client, idle, filters
+from pyrogram import Client, idle, filters
 import os
 from config import Config
 from utils import mp, USERNAME
