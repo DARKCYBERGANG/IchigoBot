@@ -1,8 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from utils import mp, RADIO, USERNAME
-from config import Config
-from config import STREAM
+from Ichigo.utils import mp, RADIO, USERNAME
+from Ichigo.config import Config, STREAM
 
 ADMINS=Config.ADMINS
 
