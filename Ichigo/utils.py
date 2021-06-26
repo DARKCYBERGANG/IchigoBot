@@ -8,7 +8,6 @@ import signal
 from pyrogram import Client
 from youtube_dl import YoutubeDL
 from os import path
-from Ichigo.user import USER
 import wget
 STREAM_URL=Config.STREAM_URL
 CHAT=Config.CHAT
