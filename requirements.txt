@@ -50,7 +50,6 @@ pySmartDL
 validators
 youtube_dl
 html2text
-git+https://github.com/pytgcalls/pytgcalls
 python-dotenv
 youtube_search_python
 aiofiles
