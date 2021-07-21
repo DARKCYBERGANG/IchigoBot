@@ -1,1 +1,1 @@
-web: python3 -m vc
+workwr: python3 -m vc
