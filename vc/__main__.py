@@ -13,7 +13,7 @@ bot = Bot(
     ":memory:",
     API_ID,
     API_HASH,
-    bot_token=BOT_TOKEN,
+    bot_token=TOKEN,
     plugins=dict(root="vc.modules"),
 )
 
