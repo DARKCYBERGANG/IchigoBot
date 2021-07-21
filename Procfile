@@ -1,2 +1,2 @@
 worker: python3 -m Ichigo
-ps:scale worker=1
+worker: python3 -m vc
