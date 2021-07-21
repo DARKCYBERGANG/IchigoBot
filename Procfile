@@ -1,1 +1,1 @@
-workwr: python3 -m vc
+worker: python3 -m vc
