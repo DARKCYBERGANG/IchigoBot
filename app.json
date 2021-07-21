@@ -69,10 +69,18 @@
          "required": false
       },
       "BOT_NAME": {
-      "description": "Your MusicPlayer Bot Name.",
-      "required": false,
-      "value": ""
+         "description": "Your MusicPlayer Bot Name.",
+         "required": false,
+         "value": ""
       },
+      "BOT_USERNAME": {
+         "description": "Your bot's username without @",
+         "required": true
+      },
+      "ASSISTANT_NAME": {
+         "description": "Your MusicPlayer's assistant Username without @.",
+         "required": true
+      },         
       "DURATION_LIMIT": {
       "description": "Max audio duration limit for downloads (minutes).",
       "required": true,
