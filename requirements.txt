@@ -60,5 +60,6 @@ ffmpeg-python
 python-arq
 wget
 wheel
+py-tgcalls
 
 
