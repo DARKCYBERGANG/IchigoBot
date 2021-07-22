@@ -1,9 +1,9 @@
 build:
   docker:
-    worker: Dockerfile
+    worker1: Dockerfile
 run:
-  worker: python3 -m Ichigo
-  web:
+  worker1: python3 -m Ichigo
+  worker2:
     command:
       - python3 -m vc
-    image: worker
+    image: worker1
