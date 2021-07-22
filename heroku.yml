@@ -5,8 +5,10 @@ run:
   worker1:
     command:
       - python3 -m ichigo
+    image: Dockerfile
 
 run:
   worker2:
     command:
       - python3 -m vc
+    image: Dockerfile
