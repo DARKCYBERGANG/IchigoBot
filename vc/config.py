@@ -6,9 +6,30 @@ from dotenv import load_dotenv
 
 if os.path.exists("local.env"):
     load_dotenv("local.env")
+    
+ydl_opts = {
+   "geo-bypass": True,
+   "nocheckcertificate": True
+   }
+ydl = YoutubeDL(ydl_opts)
+links=[]
+finalurl=""
+STREAM=os.environ.get("STREAM_URL", "http://node-25.zeno.fm/kezsc0y2wwzuv?listening-from-radio-garden=1622271954020&rj-ttl=5&rj-tok=AAABec5bAE4Aj31dmRAEFgcbvw")
+regex = r"^(https?\:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+"
+match = re.match(regex,STREAM)
+if match:
+    meta = ydl.extract_info(STREAM, download=False)
+    formats = meta.get('formats', [meta])
+    for f in formats:
+        links.append(f['url'])
+    finalurl=links[0]
+else:
+    finalurl=STREAM
+
 
 que = {}
 SESSION_NAME = getenv("SESSION_NAME", "session")
+STREAM_URL=finalurl
 TOKEN = getenv("TOKEN")
 BOT_NAME = getenv("BOT_NAME")
 UPDATES_CHANNEL = getenv("UPDATES_CHANNEL", "AsmSafone")
