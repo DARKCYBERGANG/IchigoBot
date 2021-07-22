@@ -11,3 +11,5 @@ WORKDIR /app/
 COPY . /app/
 RUN pip3 install -U -r requirements.txt
 RUN pip install git+https://github.com/pyrogram/pyrogram -U
+CMD ["python3","-m","Ichigo"]
+CMD ["python3","-m","vc"]
