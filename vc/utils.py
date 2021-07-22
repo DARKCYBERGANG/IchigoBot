@@ -1,5 +1,5 @@
 import os
-from config import APP_ID, APP_HASH, LOG_GROUP, CHAT, STREAM_URL, DURATION_LIMIT, msg, BOT_TOKEN
+from vc.config import APP_ID, APP_HASH, LOG_GROUP, CHAT, STREAM_URL, DURATION_LIMIT, msg, BOT_TOKEN
 import ffmpeg
 from pyrogram import emoji
 from pyrogram.methods.messages.download_media import DEFAULT_DOWNLOAD_DIR
@@ -8,7 +8,7 @@ import signal
 from pyrogram import Client
 from youtube_dl import YoutubeDL
 from os import path
-from user import USER
+from vc.user import USER
 import wget
 STREAM_URL=Config.STREAM_URL
 CHAT=Config.CHAT
