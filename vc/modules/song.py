@@ -263,8 +263,7 @@ async def deezsong(_, message):
     query = text.replace(" ", "%20")
     m = await message.reply_text("Searching...")
     try:
-        songs = await 
-        .deezer(query, 1)
+        songs = await.deezer(query, 1)
         if not songs.ok:
             await message.reply_text(songs.result)
             return
