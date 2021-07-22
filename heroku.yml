@@ -2,5 +2,11 @@ build:
   docker:
     worker: Dockerfile
 run:
-  worker1: python3 -m vc
-  worker2: python3 -m Ichigo
+  worker1:
+    command:
+      - python3 -m ichigo
+
+run:
+  worker2:
+    command:
+      - python3 -m vc
