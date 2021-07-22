@@ -48,7 +48,6 @@ hachoir
 pybase64
 pySmartDL
 validators
-youtube_dl
 html2text
 python-dotenv
 youtube_search_python
