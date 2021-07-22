@@ -9,6 +9,7 @@
          "Ichigo"
       ],   
    "repository": "https://github.com/DARKCYBERGANG/IchigoBot",
+   "stack": "container",
    "addons": [
       {
          "options": {
