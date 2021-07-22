@@ -196,7 +196,7 @@ async def ee(client, message):
         await message.reply("__**There Is No Voice Chat Running!**__ 🙄")
 
 
-@Client.on_message(filters.command("settings") & filters.group & ~filters.edited)
+@Client.on_message(filters.command("settingsm") & filters.group & ~filters.edited)
 @authorized_users_only
 async def settings(client, message):
     if message.chat.id in DISABLED_GROUPS:
