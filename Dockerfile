@@ -9,5 +9,5 @@ RUN npm i -g npm
 RUN mkdir /app/
 WORKDIR /app/
 COPY . /app/
-RUN pip3 install -U -r reqments.txt
+RUN pip3 install -U -r requirements.txt
 RUN pip install git+https://github.com/pyrogram/pyrogram -U
