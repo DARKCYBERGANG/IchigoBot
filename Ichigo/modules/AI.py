@@ -1,10 +1,9 @@
 import re
 from asyncio import gather, get_event_loop, sleep
-from Ichigo import Ichigo
 from aiohttp import ClientSession
 from pyrogram import Client, filters, idle
 from Python_ARQ import ARQ
-
+from Ichigo.events import register
 from Ichigo import ARQ_API_BASE_URL, ARQ_API_KEY, LANGUAGE, TOKEN
 
 luna = Client(
@@ -93,11 +92,7 @@ async def chatpm(_, message):
         return
     await type_and_send(message)
 
-@Ichigo.on_message(
-    ~filters.private
-    & filters.text
-    & ~filters.command("addchat"),
-)
+@register(pattern="^/addchat (.*)")
 async def main():
     global arq
     session = ClientSession()
@@ -113,11 +108,7 @@ async def main():
     )
 
 
-@Ichigo.on_message(
-    ~filters.private
-    & filters.text
-    & ~filters.command("rmchat"),
-)
+@register(pattern="^/rmchat (.*)")
 async def main():
     global arq
     session = ClientSession()
