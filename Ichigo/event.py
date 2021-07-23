@@ -89,3 +89,5 @@ def capture_err(func):
                 )
             raise err
     return capture
+
+chatbot_group = 69
