@@ -8,7 +8,7 @@ import telegram.ext as tg
 from telethon import TelegramClient
 from pyrogram import Client, errors
 from Python_ARQ import ARQ
-
+from aiohttp import Clientsession
 StartTime = time.time()
 
 # enable logging
@@ -192,7 +192,7 @@ rnd = Client(
     api_hash=API_HASH
 )
 
-ARQ_API = ARQ_API_BASE_URL
+From Ichigo import ARQ_API_BASE_URL as ARQ_API
 arq = ARQ(ARQ_API)
 
 DRAGONS = list(DRAGONS) + list(DEV_USERS)
