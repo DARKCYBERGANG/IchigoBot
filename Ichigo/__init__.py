@@ -79,13 +79,18 @@ if ENV:
     LOAD = os.environ.get("LOAD", "").split()
     NO_LOAD = os.environ.get("NO_LOAD", "translation").split()
     DEL_CMDS = bool(os.environ.get("DEL_CMDS", False))
+    ARQ_API_KEY = "VKSSQH-SRNJYZ-MSOJAI-QALESR-ARQ"
+    # List of supported languages >>
+    # https://py-googletrans.readthedocs.io/en/latest/#googletrans-languages
+    LANGUAGE = "en"
+    # Leave it as it is
+    ARQ_API_BASE_URL = "https://thearq.tech"
     STRICT_GBAN = bool(os.environ.get("STRICT_GBAN", False))
     WORKERS = int(os.environ.get("WORKERS", 8))
     BAN_STICKER = os.environ.get("BAN_STICKER", "CAADAgADOwADPPEcAXkko5EB3YGYAg")
     ALLOW_EXCL = os.environ.get("ALLOW_EXCL", False)
     CASH_API_KEY = os.environ.get("CASH_API_KEY", None)
     TIME_API_KEY = os.environ.get("TIME_API_KEY", None)
-    AI_API_KEY = os.environ.get("AI_API_KEY", None)
     WALL_API = os.environ.get("WALL_API", None)
     SUPPORT_CHAT = os.environ.get("SUPPORT_CHAT", None)
     SPAMWATCH_SUPPORT_CHAT = os.environ.get("SPAMWATCH_SUPPORT_CHAT", None)
