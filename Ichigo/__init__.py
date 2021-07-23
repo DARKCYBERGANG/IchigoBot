@@ -84,7 +84,7 @@ if ENV:
     # https://py-googletrans.readthedocs.io/en/latest/#googletrans-languages
     LANGUAGE = "en"
     # Leave it as it is
-    ARQ_API_BASE_URL = "https://thearq.tech"
+    ARQ_API_BASE_URL = "http://35.240.133.234:8000"
     STRICT_GBAN = bool(os.environ.get("STRICT_GBAN", False))
     WORKERS = int(os.environ.get("WORKERS", 8))
     BAN_STICKER = os.environ.get("BAN_STICKER", "CAADAgADOwADPPEcAXkko5EB3YGYAg")
@@ -191,6 +191,7 @@ rnd = Client(
     api_hash=API_HASH
 )
 
+ARQ_API = ARQ_API_BASE_URL
 
 DRAGONS = list(DRAGONS) + list(DEV_USERS)
 DEV_USERS = list(DEV_USERS)
