@@ -106,6 +106,7 @@ async def main():
 -----------------
 """
     )
+    await idle()
 
 
 @register(pattern="^/rmchat (.*)")
