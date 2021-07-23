@@ -102,7 +102,7 @@ async def main():
     global arq
     session = ClientSession()
     arq = ARQ(ARQ_API_BASE_URL, ARQ_API_KEY, session)
-await message.reply_text("AI-Chat Bot Just Entered The Chat")
+    await message.reply_text("AI-Chat Bot Just Entered The Chat")
     await luna.start()
     print(
         """
@@ -122,7 +122,7 @@ async def main():
     global arq
     session = ClientSession()
     arq = ARQ(ARQ_API_BASE_URL, ARQ_API_KEY, session)
-await message.reply_text("AI-Chat Bot Got Busted!")
+    await message.reply_text("AI-Chat Bot Got Busted!")
     await luna.stop()
     print(
         """
