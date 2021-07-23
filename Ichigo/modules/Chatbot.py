@@ -12,7 +12,7 @@ active_chats = []
 # Enabled | Disable Chatbot
 
 
-@app.on_message(filters.command("chatbot") & ~filters.edited)
+@rnd.on_message(filters.command("chatbot") & ~filters.edited)
 @capture_err
 async def chatbot_status(_, message):
     global active_chats
@@ -44,7 +44,7 @@ async def chatbot_status(_, message):
         await message.reply_text("/chatbot [ON|OFF]")
 
 
-@app.on_message(filters.text & filters.reply & ~filters.bot &
+@rnd.on_message(filters.text & filters.reply & ~filters.bot &
                 ~filters.via_bot & ~filters.forwarded, group=chatbot_group)
 @capture_err
 async def chatbot_talk(_, message):
