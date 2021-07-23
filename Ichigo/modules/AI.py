@@ -1,25 +1,11 @@
 import re
 from asyncio import gather, get_event_loop, sleep
-import html
-from time import time
-import Ichigo.modules.sql.chatbot_sql as sql
+
 from aiohttp import ClientSession
 from pyrogram import Client, filters, idle
 from Python_ARQ import ARQ
-from Ichigo import ARQ_API_BASE_URL, ARQ_API_KEY, LANGUAGE, TOKEN, dispatcher
-from Ichigo.modules.helper_funcs.chat_status import user_admin
-from Ichigo.modules.helper_funcs.filters import CustomFilters
-from Ichigo.modules.log_channel import gloggable
-from telegram import Update
-from telegram.error import BadRequest, RetryAfter, Unauthorized
-from telegram.ext import (
-    CallbackContext,
-    CommandHandler,
-    Filters,
-    MessageHandler,
-    run_async,
-)
-from telegram.utils.helpers import mention_html
+
+from config import ARQ_API_BASE_URL, ARQ_API_KEY, LANGUAGE, TOKEN
 
 luna = Client(
     ":memory:",
@@ -53,18 +39,25 @@ async def type_and_send(message):
     user_id = message.from_user.id if message.from_user else 0
     query = message.text.strip()
     await message._client.send_chat_action(chat_id, "typing")
-    response, _ = await gather(rndQuery(query, user_id), sleep(1))
+    response, _ = await gather(lunaQuery(query, user_id), sleep(2))
     await message.reply_text(response)
     await message._client.send_chat_action(chat_id, "cancel")
 
 
+@luna.on_message(filters.command("repo") & ~filters.edited)
+async def repo(_, message):
+    await message.reply_text(
+        "[GitHub](https://github.com/thehamkercat/LunaChatBot)"
+        + " | [Group](t.me/PatheticProgrammers)",
+        disable_web_page_preview=True,
+    )
 
 
 @luna.on_message(filters.command("help") & ~filters.edited)
 async def start(_, message):
     await luna.send_chat_action(message.chat.id, "typing")
-    await sleep(1)
-    await message.reply_text("KeK")
+    await sleep(2)
+    await message.reply_text("/repo - Get Repo Link")
 
 
 @luna.on_message(
@@ -83,7 +76,7 @@ async def chat(_, message):
             return
     else:
         match = re.search(
-            "[.|\n]{0,}rnd[.|\n]{0,}",
+            "[.|\n]{0,}luna[.|\n]{0,}",
             message.text.strip(),
             flags=re.IGNORECASE,
         )
@@ -101,70 +94,21 @@ async def chatpm(_, message):
     await type_and_send(message)
 
 
+async def main():
+    global arq
     session = ClientSession()
     arq = ARQ(ARQ_API_BASE_URL, ARQ_API_KEY, session)
 
-@run_async
-@user_admin
-@gloggable
-def add_chat(update: Update, context: CallbackContext):
-    global arq
-    chat = update.effective_chat
-    msg = update.effective_message
-    user = update.effective_user
-    is_chat = sql.is_chat(chat.id)
-    if chat.type == "private":
-        msg.reply_text("You can't enable AI in PM.")
-        return
-
-    if not is_chat:
-        ses = arq.ClientSession()
-        ses_id = str(ses.id)
-        expires = str(ses.expires)
-        sql.set_ses(chat.id, ses_id, expires)
-        msg.reply_text("AI successfully enabled for this chat!")
-        message = (
-            f"<b>{html.escape(chat.title)}:</b>\n"
-            f"#AI_ENABLED\n"
-            f"<b>Admin:</b> {mention_html(user.id, html.escape(user.first_name))}\n"
-        )
-        return message
-    else:
-        msg.reply_text("AI is already enabled for this chat!")
-        return ""
+    await luna.start()
+    print(
+        """
+-----------------
+| Luna Started! |
+-----------------
+"""
+    )
+    await idle()
 
 
-@run_async
-@user_admin
-@gloggable
-def remove_chat(update: Update, context: CallbackContext):
-    msg = update.effective_message
-    chat = update.effective_chat
-    user = update.effective_user
-    is_chat = sql.is_chat(chat.id)
-    if not is_chat:
-        msg.reply_text("AI isn't enabled here in the first place!")
-        return ""
-    else:
-        sql.rem_chat(chat.id)
-        msg.reply_text("AI disabled successfully!")
-        message = (
-            f"<b>{html.escape(chat.title)}:</b>\n"
-            f"#AI_DISABLED\n"
-            f"<b>Admin:</b> {mention_html(user.id, html.escape(user.first_name))}\n"
-        )
-        return message
-
-     
-    
-    
-ADD_CHAT_HANDLER = CommandHandler("addchat", add_chat)
-REMOVE_CHAT_HANDLER = CommandHandler("rmchat", remove_chat)
-
-dispatcher.add_handler(ADD_CHAT_HANDLER)
-dispatcher.add_handler(REMOVE_CHAT_HANDLER)
-
-__handlers__ = [
-    ADD_CHAT_HANDLER,
-    REMOVE_CHAT_HANDLER,
-]
+loop = get_event_loop()
+loop.run_until_complete(main())
