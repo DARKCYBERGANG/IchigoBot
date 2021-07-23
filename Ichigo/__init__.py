@@ -190,8 +190,7 @@ rnd = Client(
     api_id=API_ID,
     api_hash=API_HASH
 )
-rnd.start()
-arq = ARQ(ARQ_API)
+
 
 DRAGONS = list(DRAGONS) + list(DEV_USERS)
 DEV_USERS = list(DEV_USERS)
@@ -210,3 +209,6 @@ from Ichigo.modules.helper_funcs.handlers import (
 tg.RegexHandler = CustomRegexHandler
 tg.CommandHandler = CustomCommandHandler
 tg.MessageHandler = CustomMessageHandler
+
+rnd.start()
+arq = ARQ(ARQ_API)
