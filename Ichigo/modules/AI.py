@@ -3,7 +3,7 @@ from asyncio import gather, get_event_loop, sleep
 from aiohttp import ClientSession
 from pyrogram import Client, filters, idle
 from Python_ARQ import ARQ
-from Ichigo.events import register
+from Ichigo.event import register
 from Ichigo import ARQ_API_BASE_URL, ARQ_API_KEY, LANGUAGE, TOKEN
 
 luna = Client(
