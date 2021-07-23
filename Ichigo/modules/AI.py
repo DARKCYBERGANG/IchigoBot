@@ -118,7 +118,7 @@ def add_chat(update: Update, context: CallbackContext):
         return
 
     if not is_chat:
-        ses = arq.session()
+        ses = arq.ClientSession()
         ses_id = str(ses.id)
         expires = str(ses.expires)
         sql.set_ses(chat.id, ses_id, expires)
