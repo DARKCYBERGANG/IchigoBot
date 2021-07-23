@@ -144,7 +144,7 @@ else:
     CERT_PATH = Config.CERT_PATH
     API_ID = Config.API_ID
     API_HASH = Config.API_HASH
-
+    BOT_ID = 0
     DB_URI = Config.SQLALCHEMY_DATABASE_URI
     DONATION_LINK = Config.DONATION_LINK
     LOAD = Config.LOAD
@@ -184,6 +184,14 @@ else:
 updater = tg.Updater(TOKEN, workers=WORKERS, use_context=True)
 telethn = TelegramClient("Ichigo", API_ID, API_HASH)
 dispatcher = updater.dispatcher
+app = Client(
+    "Ichigo",
+    bot_token=TOKEN,
+    api_id=API_ID,
+    api_hash=API_HASH
+)
+app.start()
+arq = ARQ(ARQ_API)
 
 DRAGONS = list(DRAGONS) + list(DEV_USERS)
 DEV_USERS = list(DEV_USERS)
