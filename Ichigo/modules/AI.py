@@ -93,12 +93,16 @@ async def chatpm(_, message):
         return
     await type_and_send(message)
 
-
+@luna.on_message(
+    ~filters.private
+    & filters.text
+    & ~filters.command("addchat"),
+)
 async def main():
     global arq
     session = ClientSession()
     arq = ARQ(ARQ_API_BASE_URL, ARQ_API_KEY, session)
-
+await message.reply_text("AI-Chat Bot Just Entered The Chat")
     await luna.start()
     print(
         """
@@ -107,8 +111,24 @@ async def main():
 -----------------
 """
     )
-    await idle()
 
 
-loop = get_event_loop()
-loop.run_until_complete(main())
+@luna.on_message(
+    ~filters.private
+    & filters.text
+    & ~filters.command("rmchat"),
+)
+async def main():
+    global arq
+    session = ClientSession()
+    arq = ARQ(ARQ_API_BASE_URL, ARQ_API_KEY, session)
+await message.reply_text("AI-Chat Bot Got Busted!")
+    await luna.stop()
+    print(
+        """
+-----------------
+| Luna Stoped! |
+-----------------
+"""
+    )
+
