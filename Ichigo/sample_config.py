@@ -20,6 +20,12 @@ class Config(object):
     OWNER_ID = 792109647  # If you dont know, run the bot and do /id in your private chat with it, also an integer
     OWNER_USERNAME = "Saitama_0110"
     SUPPORT_CHAT = "IchigoSupport"  # Your own group for support, do not add the @
+    ARQ_API_KEY = "VKSSQH-SRNJYZ-MSOJAI-QALESR-ARQ"
+    # List of supported languages >>
+    # https://py-googletrans.readthedocs.io/en/latest/#googletrans-languages
+    LANGUAGE = "en"
+    # Leave it as it is
+    ARQ_API_BASE_URL = "https://thearq.tech"
     JOIN_LOGGER = (
         -1001318558437
     )  # Prints any new group the bot is added to, prints just the name and ID.
@@ -64,7 +70,6 @@ class Config(object):
     WALL_API = (
         "awoo"  # For wallpapers, get one from https://wall.alphacoders.com/api.php
     )
-    AI_API_KEY = "awoo"  # For chatbot, get one from https://coffeehouse.intellivoid.net/dashboard
     BL_CHATS = []  # List of groups that you want blacklisted.
     SPAMMERS = None
 
