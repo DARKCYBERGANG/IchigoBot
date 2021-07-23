@@ -192,6 +192,7 @@ rnd = Client(
 )
 
 ARQ_API = ARQ_API_BASE_URL
+arq = ARQ(ARQ_API)
 
 DRAGONS = list(DRAGONS) + list(DEV_USERS)
 DEV_USERS = list(DEV_USERS)
@@ -211,5 +212,5 @@ tg.RegexHandler = CustomRegexHandler
 tg.CommandHandler = CustomCommandHandler
 tg.MessageHandler = CustomMessageHandler
 
-rnd.start()
-arq = ARQ(ARQ_API)
+
+
