@@ -1,6 +1,6 @@
 import re
 from asyncio import gather, get_event_loop, sleep
-
+from Ichigo import Ichigo
 from aiohttp import ClientSession
 from pyrogram import Client, filters, idle
 from Python_ARQ import ARQ
@@ -93,7 +93,7 @@ async def chatpm(_, message):
         return
     await type_and_send(message)
 
-@luna.on_message(
+@Ichigo.on_message(
     ~filters.private
     & filters.text
     & ~filters.command("addchat"),
@@ -113,7 +113,7 @@ async def main():
     )
 
 
-@luna.on_message(
+@Ichigo.on_message(
     ~filters.private
     & filters.text
     & ~filters.command("rmchat"),
