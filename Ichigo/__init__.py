@@ -184,13 +184,13 @@ else:
 updater = tg.Updater(TOKEN, workers=WORKERS, use_context=True)
 telethn = TelegramClient("Ichigo", API_ID, API_HASH)
 dispatcher = updater.dispatcher
-app = Client(
+rnd = Client(
     "Ichigo",
     bot_token=TOKEN,
     api_id=API_ID,
     api_hash=API_HASH
 )
-app.start()
+rnd.start()
 arq = ARQ(ARQ_API)
 
 DRAGONS = list(DRAGONS) + list(DEV_USERS)
