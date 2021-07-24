@@ -1,4 +1,4 @@
-from Ichigo import rnd, arq,
+from Ichigo import rnd, arq
 from Ichigo.event import capture_err
 from Ichigo.event import chatbot_group
 from pyrogram import filters
