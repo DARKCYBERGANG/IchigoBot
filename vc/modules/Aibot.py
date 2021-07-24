@@ -3,6 +3,8 @@ from vc.config import ARQ_API_BASE_URL, ARQ_API_KEY, LOG_GRP
 from aiohttp import ClientSession
 from Python_ARQ import ARQ
 from functools import wraps
+import sys
+import traceback
 
 session = ClientSession()
 arq = ARQ(ARQ_API_BASE_URL, ARQ_API_KEY, session)
