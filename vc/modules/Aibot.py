@@ -6,6 +6,17 @@ from functools import wraps
 import sys
 import traceback
 
+import aiohttp
+async def fetch(url):
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as resp:
+            try:
+                data = await resp.json()
+            except:
+                data = await resp.text()
+    return data
+
+
 session = ClientSession()
 arq = ARQ(ARQ_API_BASE_URL, ARQ_API_KEY, session)
     
