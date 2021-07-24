@@ -1,7 +1,7 @@
 from pyrogram import Client, filters
 from vc.config import ARQ_API_BASE_URL, ARQ_API_KEY, LOG_GRP
 import aiohttp
-Import aiofiles
+import aiofiles
 from aiohttp import ClientSession
 from Python_ARQ import ARQ
 from functools import wraps
