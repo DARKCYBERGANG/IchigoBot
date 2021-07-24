@@ -23,7 +23,7 @@ DURATION_LIMIT = int(getenv("DURATION_LIMIT", "30"))
 PMPERMIT = getenv("PMPERMIT", None)
 LOG_GRP = getenv("LOG_GRP", None)
 ARQ_API_BASE_URL = "https://thearq.tech"
-ARQ_API_KEY = "TFISBG-HSZKUD-BFCJEL-ELZAGS-ARQ"
+ARQ_API_KEY = getenv("ARQ_API_KEY", None)
 COMMAND_PREFIXES = list(getenv("COMMAND_PREFIXES", "/ !").split())
 
 SUDO_USERS = list(map(int, getenv("SUDO_USERS").split()))
