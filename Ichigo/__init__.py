@@ -212,14 +212,4 @@ tg.CommandHandler = CustomCommandHandler
 tg.MessageHandler = CustomMessageHandler
 
 
-
-async def main():
-    global arq
-    await rnd.start()
-    print(
-        """
------------------
-| Luna Started! |
------------------
-"""
-    )
+ rnd.start()
