@@ -9,7 +9,8 @@ from telethon import TelegramClient
 from pyrogram import Client, errors
 from Ichigo.config import (
         bot_token, api_id, api_hash,
-        ARQ_API_BASE_URL as ARQ_API)
+        ARQ_API_BASE_URL, ARQ_API_KEY)
+from aiohttp import ClientSession
 from Python_ARQ import ARQ
 
 StartTime = time.time()
@@ -188,7 +189,8 @@ telethn = TelegramClient("Ichigo", API_ID, API_HASH)
 dispatcher = updater.dispatcher
 
 rnd = Client("Ichigo", bot_token=bot_token, api_id=api_id, api_hash=api_hash)
-arq = ARQ(ARQ_API)
+session = ClientSession
+arq = ARQ(ARQ_API_BASE_URL, ARQ_API_KEY, session)
 
 DRAGONS = list(DRAGONS) + list(DEV_USERS)
 DEV_USERS = list(DEV_USERS)
