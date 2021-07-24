@@ -20,7 +20,6 @@ SUPPORT_GROUP = getenv("SUPPORT_GROUP", "SafoTheBot")
 PROJECT_NAME = getenv("PROJECT_NAME", "Stream Music Bot")
 SOURCE_CODE = getenv("SOURCE_CODE", "github.com/AsmSafone")
 DURATION_LIMIT = int(getenv("DURATION_LIMIT", "30"))
-ARQ_API_KEY = getenv("ARQ_API_KEY")
 PMPERMIT = getenv("PMPERMIT", None)
 LOG_GRP = getenv("LOG_GRP", None)
 ARQ_API_BASE_URL = "https://thearq.tech"
