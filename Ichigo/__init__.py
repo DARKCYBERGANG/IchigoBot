@@ -192,9 +192,8 @@ rnd = Client(
     api_hash=API_HASH
 )
 
-From Ichigo import ARQ_API_BASE_URL as ARQ_API
 
-arq = ARQ(ARQ_API)
+arq = ARQ(ARQ_API_BASE_URL)
 
 DRAGONS = list(DRAGONS) + list(DEV_USERS)
 DEV_USERS = list(DEV_USERS)
