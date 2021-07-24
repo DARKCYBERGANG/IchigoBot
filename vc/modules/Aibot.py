@@ -55,6 +55,7 @@ async def chatbot_talk(_, message):
     if message.chat.id not in active_chats:
         return
     if message.reply_to_message.from_user.id != BOT_ID:
+        return
     query = message.text
     luna = await arq.luna(query)
     response = luna.response
