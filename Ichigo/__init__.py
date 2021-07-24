@@ -87,7 +87,7 @@ if ENV:
     # List of supported languages >>
     # https://py-googletrans.readthedocs.io/en/latest/#googletrans-languages
     LANGUAGE = "en"
-    # Leave it as it is
+    LOG_GRP = getenv("LOG_GRP", None)
     STRICT_GBAN = bool(os.environ.get("STRICT_GBAN", False))
     WORKERS = int(os.environ.get("WORKERS", 8))
     BAN_STICKER = os.environ.get("BAN_STICKER", "CAADAgADOwADPPEcAXkko5EB3YGYAg")
