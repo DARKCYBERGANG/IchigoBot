@@ -3,7 +3,7 @@ from Ichigo import telethn
 import sys
 import traceback
 from functools import wraps
-from Ichigo import rnd
+from Ichigo.modules.Chatbot import rnd
 LOG_GROUP = 1001265915469
 
 def register(**args):
