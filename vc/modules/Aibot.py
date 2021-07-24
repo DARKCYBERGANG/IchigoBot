@@ -1,6 +1,10 @@
 from pyrogram import Client, filters
-from vc.config import arq
+from vc.config import ARQ_API_BASE_URL, ARQ_API_KEY
+from aiohttp import ClientSession
+from Python_ARQ import ARQ
 
+session = ClientSession()
+arq = ARQ(ARQ_API_BASE_URL, ARQ_API_KEY, session)
     
 
 __MODULE__ = "ChatBot"
