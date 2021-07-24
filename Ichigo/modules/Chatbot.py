@@ -1,4 +1,4 @@
-from Ichigo import rnd, arq, BOT_ID
+from Ichigo import rnd, arq,
 from Ichigo.event import capture_err
 from Ichigo.event import chatbot_group
 from pyrogram import filters
@@ -10,7 +10,7 @@ __HELP__ = "/chatbot [ON|OFF] To Enable Or Disable ChatBot In Your Chat."
 active_chats = []
 
 # Enabled | Disable Chatbot
-
+BOT_ID = 1690374847
 
 @rnd.on_message(filters.command("chatbot") & ~filters.edited)
 @capture_err
