@@ -7,7 +7,11 @@ from os import getenv
 import telegram.ext as tg
 from telethon import TelegramClient
 from pyrogram import Client, errors
+from Ichigo.config import (
+        bot_token, api_id, api_hash,
+        ARQ_API_BASE_URL as ARQ_API)
 from Python_ARQ import ARQ
+
 StartTime = time.time()
 
 # enable logging
@@ -83,7 +87,6 @@ if ENV:
     # https://py-googletrans.readthedocs.io/en/latest/#googletrans-languages
     LANGUAGE = "en"
     # Leave it as it is
-    ARQ_API_BASE_URL = "http://35.240.133.234:8000"
     STRICT_GBAN = bool(os.environ.get("STRICT_GBAN", False))
     WORKERS = int(os.environ.get("WORKERS", 8))
     BAN_STICKER = os.environ.get("BAN_STICKER", "CAADAgADOwADPPEcAXkko5EB3YGYAg")
@@ -183,15 +186,9 @@ else:
 updater = tg.Updater(TOKEN, workers=WORKERS, use_context=True)
 telethn = TelegramClient("Ichigo", API_ID, API_HASH)
 dispatcher = updater.dispatcher
-rnd = Client(
-    "Ichigo",
-    bot_token=TOKEN,
-    api_id=API_ID,
-    api_hash=API_HASH
-)
 
-
-arq = ARQ(ARQ_API_BASE_URL)
+rnd = Client("Ichigo", bot_token=bot_token, api_id=api_id, api_hash=api_hash)
+arq = ARQ(ARQ_API)
 
 DRAGONS = list(DRAGONS) + list(DEV_USERS)
 DEV_USERS = list(DEV_USERS)
