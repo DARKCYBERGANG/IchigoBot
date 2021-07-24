@@ -8,7 +8,6 @@ import telegram.ext as tg
 from telethon import TelegramClient
 from pyrogram import Client, errors
 from Python_ARQ import ARQ
-from aiohttp import Clientsession
 StartTime = time.time()
 
 # enable logging
