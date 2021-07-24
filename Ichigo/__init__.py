@@ -15,7 +15,7 @@ from aiohttp import ClientSession
 from Python_ARQ import ARQ
 
 rnd = Client("Ichigo", bot_token=bot_token, api_id=api_id, api_hash=api_hash)
-session = ClientSession()
+session = Client()
 arq = ARQ(ARQ_API_BASE_URL, ARQ_API_KEY, session)
 
 StartTime = time.time()
