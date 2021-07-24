@@ -1,7 +1,14 @@
-from Ichigo import rnd, arq
 from Ichigo.event import capture_err
 from Ichigo.event import chatbot_group
 from pyrogram import filters
+from Ichigo.config import (
+        bot_token, api_id, api_hash,
+        ARQ_API_BASE_URL, ARQ_API_KEY)
+from aiohttp import ClientSession
+from Python_ARQ import ARQ
+
+rnd = Client("Ichigo", bot_token=bot_token, api_id=api_id, api_hash=api_hash)
+
 
 
 __MODULE__ = "ChatBot"
@@ -56,3 +63,24 @@ async def chatbot_talk(_, message):
     luna = await arq.luna(query)
     response = luna.response
     await message.reply_text(response)
+    
+    
+    
+    async def main():
+    global arq
+    session = ClientSession()
+    arq = ARQ(ARQ_API_BASE_URL, ARQ_API_KEY, session)
+    
+    await rnd.start()
+    print(
+        """
+-----------------
+| Luna Started! |
+-----------------
+"""
+    )
+    await idle()
+
+
+loop = get_event_loop()
+loop.run_until_complete(main())
