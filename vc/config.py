@@ -24,6 +24,7 @@ PMPERMIT = getenv("PMPERMIT", None)
 LOG_GRP = getenv("LOG_GRP", None)
 ARQ_API_BASE_URL = "https://thearq.tech"
 ARQ_API_KEY = getenv("ARQ_API_KEY", None)
+BOT_ID = getenv("BOT_ID", None)
 COMMAND_PREFIXES = list(getenv("COMMAND_PREFIXES", "/ !").split())
 
 SUDO_USERS = list(map(int, getenv("SUDO_USERS").split()))
