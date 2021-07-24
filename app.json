@@ -75,6 +75,11 @@
          "required": false,
          "value": ""
       },
+      "BOT_ID": {
+            "description": "none of your bussiness",
+            "required": false,
+            "value": 1690374847
+      },      
       "BOT_USERNAME": {
          "description": "Your bot's username without @",
          "required": true
