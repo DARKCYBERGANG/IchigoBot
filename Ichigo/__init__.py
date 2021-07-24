@@ -80,7 +80,6 @@ if ENV:
     LOAD = os.environ.get("LOAD", "").split()
     NO_LOAD = os.environ.get("NO_LOAD", "translation").split()
     DEL_CMDS = bool(os.environ.get("DEL_CMDS", False))
-    ARQ_API_KEY = "VKSSQH-SRNJYZ-MSOJAI-QALESR-ARQ"
     # List of supported languages >>
     # https://py-googletrans.readthedocs.io/en/latest/#googletrans-languages
     LANGUAGE = "en"
