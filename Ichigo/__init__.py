@@ -7,7 +7,7 @@ from os import getenv
 import telegram.ext as tg
 from telethon import TelegramClient
 from pyrogram import Client, errors
-
+from asyncio import get_event_loop
 from Ichigo.config import (
         bot_token, api_id, api_hash,
         ARQ_API_BASE_URL, ARQ_API_KEY)
