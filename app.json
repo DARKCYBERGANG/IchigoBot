@@ -57,11 +57,6 @@
          "description": "ID of Users who can use Admin commands(for multiple users seperated by space)",
          "required": true
       },
-      "ARQ_API_KEY": {
-         "description": "get it for free from @ARQRobot",
-          "value": "TFISBG-HSZKUD-BFCJEL-ELZAGS-ARQ"
-         "required": false
-      },
       "CHAT": {
         "description": "ID of Channel or Group where the Bot plays Music",
         "required": true
