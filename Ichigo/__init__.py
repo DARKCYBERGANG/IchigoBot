@@ -212,4 +212,4 @@ tg.CommandHandler = CustomCommandHandler
 tg.MessageHandler = CustomMessageHandler
 
 
- rnd.start()
+
