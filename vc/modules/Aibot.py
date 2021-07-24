@@ -50,7 +50,7 @@ async def chatbot_status(_, message):
         await message.reply_text("/chatbot [ON|OFF]")
 
 
-@Client.on_message(filters.text & filters.reply & ~filters.bot)
+@Client.on_message(filters.text & filters.reply & filters.incoming & ~filters.bot)
 async def chatbot_talk(_, message):
     if message.chat.id not in active_chats:
         return
