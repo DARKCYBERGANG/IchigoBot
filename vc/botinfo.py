@@ -1,4 +1,4 @@
-from wbb import LOG_GRP
+from Ichigo import LOG_GRP
 from pyrogram import Client
 BOT_ID = 0
 BOT_NAME = ""
