@@ -4,7 +4,6 @@ from aiohttp import ClientSession
 from Python_ARQ import ARQ
 from functools import wraps
 from vc.fetch import fetch
-from vc.errors import capture_err
 
 session = ClientSession()
 arq = ARQ(ARQ_API_BASE_URL, ARQ_API_KEY, session)
@@ -21,7 +20,6 @@ chatbot_group = 69
 
 
 @Client.on_message(filters.command("chatbot") & ~filters.edited)
-@capture_err
 async def chatbot_status(_, message):
     global active_chats
     if len(message.command) != 2:
@@ -54,7 +52,6 @@ async def chatbot_status(_, message):
 
 @Client.on_message(filters.text & filters.reply & ~filters.bot &
                 ~filters.via_bot & ~filters.forwarded, group=chatbot_group)
-@capture_err
 async def chatbot_talk(_, message):
     if message.chat.id not in active_chats:
         return
