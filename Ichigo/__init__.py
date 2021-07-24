@@ -7,16 +7,6 @@ from os import getenv
 import telegram.ext as tg
 from telethon import TelegramClient
 from pyrogram import Client, errors
-from asyncio import get_event_loop
-from Ichigo.config import (
-        bot_token, api_id, api_hash,
-        ARQ_API_BASE_URL, ARQ_API_KEY)
-from aiohttp import ClientSession
-from Python_ARQ import ARQ
-
-rnd = Client("Ichigo", bot_token=bot_token, api_id=api_id, api_hash=api_hash)
-session = ClientSession()
-arq = ARQ(ARQ_API_BASE_URL, ARQ_API_KEY, session)
 
 StartTime = time.time()
 
@@ -79,8 +69,6 @@ if ENV:
     API_ID = os.environ.get("API_ID", None)
     API_HASH = os.environ.get("API_HASH", None)
     SESSION_NAME = os.environ.get("SESSION_NAME", "session")
-    API_IDD = os.environ.get("APIM")
-    API_HASHH = os.environ.get("HASHM")
     DURATION_LIMIT = int(getenv("DURATION_LIMIT", "7"))
     COMMAND_PREFIXES = list(getenv("COMMAND_PREFIXES", "/ !").split())
     DB_URI = os.environ.get("DATABASE_URL")
@@ -91,7 +79,6 @@ if ENV:
     DEL_CMDS = bool(os.environ.get("DEL_CMDS", False))
     # List of supported languages >>
     # https://py-googletrans.readthedocs.io/en/latest/#googletrans-languages
-    LANGUAGE = "en"
     LOG_GRP = getenv("LOG_GRP", None)
     STRICT_GBAN = bool(os.environ.get("STRICT_GBAN", False))
     WORKERS = int(os.environ.get("WORKERS", 8))
@@ -152,7 +139,6 @@ else:
     CERT_PATH = Config.CERT_PATH
     API_ID = Config.API_ID
     API_HASH = Config.API_HASH
-    BOT_ID = 0
     DB_URI = Config.SQLALCHEMY_DATABASE_URI
     DONATION_LINK = Config.DONATION_LINK
     LOAD = Config.LOAD
@@ -164,7 +150,6 @@ else:
     ALLOW_EXCL = Config.ALLOW_EXCL
     CASH_API_KEY = Config.CASH_API_KEY
     TIME_API_KEY = Config.TIME_API_KEY
-    AI_API_KEY = Config.AI_API_KEY
     WALL_API = Config.WALL_API
     SUPPORT_CHAT = Config.SUPPORT_CHAT
     SPAMWATCH_SUPPORT_CHAT = Config.SPAMWATCH_SUPPORT_CHAT
