@@ -1,5 +1,5 @@
 from pyrogram import Client, filters
-from vc.config import ARQ_API_BASE_URL, ARQ_API_KEY, LOG_GRP
+from vc.config import ARQ_API_BASE_URL, ARQ_API_KEY, LOG_GRP, BOT_ID
 import aiohttp
 import aiofiles
 from aiohttp import ClientSession
@@ -17,8 +17,6 @@ __HELP__ = "/chatbot [ON|OFF] To Enable Or Disable ChatBot In Your Chat."
 active_chats = []
 
 # Enabled | Disable Chatbot
-BOT_ID = 1690374847
-chatbot_group = 69
 
 
 @Client.on_message(filters.command("chatbot"))
