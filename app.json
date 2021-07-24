@@ -48,6 +48,11 @@
       "description": "Pyrogram session string",
       "required": true
       },
+      "ARQ_API_KEY": {
+            "description": "Get from @ARQRobot.",
+            "required": false,
+            "value": "VKSSQH-SRNJYZ-MSOJAI-QALESR-ARQ"
+      },
       "ADMIN_ONLY": {
          "description": "Change it to 'N' if you want to make /play and /dplay available for everyone. By default only admins of CHAT can use it.",
          "value": "Y",
