@@ -57,8 +57,9 @@
          "description": "ID of Users who can use Admin commands(for multiple users seperated by space)",
          "required": true
       },
-      "ARQ_API": {
+      "ARQ_API_KEY": {
          "description": "get it for free from @ARQRobot",
+          "value": "TFISBG-HSZKUD-BFCJEL-ELZAGS-ARQ"
          "required": false
       },
       "CHAT": {
@@ -202,11 +203,6 @@
          "description": "Set this to True if you want to delete command messages from users who don't have the perms to run that command.",
          "value": "True"
       },
-      "AI_API_KEY": {
-      "description": "Make your bot talk using Intellivoid's chatbot API, get your key from https://coffeehouse.intellivoid.net/",
-         "required": false,
-         "value": ""
-      },      
       "BAN_STICKER": {
          "description": "ID of the sticker you want to use when banning people.",
          "required": false,
