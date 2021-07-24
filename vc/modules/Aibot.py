@@ -1,5 +1,5 @@
 from pyrogram import Client, filters
-from vc.config import ARQ_API_BASE_URL, ARQ_API_KEY
+from vc.config import ARQ_API_BASE_URL, ARQ_API_KEY, LOG_GRP
 from aiohttp import ClientSession
 from Python_ARQ import ARQ
 
@@ -36,7 +36,7 @@ def capture_err(func):
             )
             for x in error_feedback:
                 await Client.send_message(
-                    LOG_GROUP,
+                    LOG_GRP,
                     x
                 )
             raise err
