@@ -21,7 +21,7 @@ BOT_ID = 1690374847
 chatbot_group = 69
 
 
-@Client.on_message(filters.command("chatbot") & ~filters.edited)
+@Client.on_message(filters.command("chatbot"))
 async def chatbot_status(_, message):
     global active_chats
     if len(message.command) != 2:
@@ -52,8 +52,7 @@ async def chatbot_status(_, message):
         await message.reply_text("/chatbot [ON|OFF]")
 
 
-@Client.on_message(filters.text & filters.reply & ~filters.bot &
-                ~filters.via_bot & ~filters.forwarded, group=chatbot_group)
+@Client.on_message(filters.text & filters.reply & ~filters.bot)
 async def chatbot_talk(_, message):
     if message.chat.id not in active_chats:
         return
@@ -62,6 +61,7 @@ async def chatbot_talk(_, message):
     query = message.text
     luna = await arq.luna(query)
     response = luna.response
+    await app.send_chat_action(message.chat.id, "typing")
     await message.reply_text(response)
     
     
