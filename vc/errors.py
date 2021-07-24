@@ -2,7 +2,7 @@ import sys
 import traceback
 from functools import wraps
 from vc.config import LOG_GRP
-from pyrogram import Client
+from pyrogram import Client as Bot
 
 
 
@@ -48,7 +48,7 @@ def capture_err(func):
                 ),
             )
             for x in error_feedback:
-                await Client.send_message(
+                await Bot.send_message(
                     LOG_GRP,
                     x
                 )
