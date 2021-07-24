@@ -191,6 +191,7 @@ rnd = Client(
     api_hash=API_HASH
 )
 
+rnd.start()
 
 arq = ARQ(ARQ_API_BASE_URL)
 
