@@ -5,16 +5,16 @@ from aiohttp import ClientSession
 from pyrogram import Client, filters, idle
 from Python_ARQ import ARQ
 
-from vc.config import ARQ_API_BASE_URL, ARQ_API_KEY, LANGUAGE, TOKEN
+from vc.config import ARQ_API_BASE_URL, ARQ_API_KEY, LANGUAGE
 
 luna = Client(
     ":memory:",
-    TOKEN=TOKEN,
-    API_ID=6,
-    API_HASH="eb06d4abfb49dc3eeb1aeb98ae0f581e",
+    bot_id="1690374847:AAFIyej-OT4CEFDu8CaMiTekXa4sMJAnFlo",
+    API_ID=6400129,
+    API_HASH="c1b151498dd24438519e3017097b46ab",
 )
 
-TOKEN = int(TOKEN.split(":")[0])
+bot_id = int(bot_id.split(":")[0])
 arq = None
 
 
@@ -72,7 +72,7 @@ async def chat(_, message):
         if not message.reply_to_message.from_user:
             return
         from_user_id = message.reply_to_message.from_user.id
-        if from_user_id != TOKEN:
+        if from_user_id != bot_id:
             return
     else:
         match = re.search(
