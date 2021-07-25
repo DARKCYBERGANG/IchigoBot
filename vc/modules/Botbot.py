@@ -72,7 +72,7 @@ async def chat(_, message):
         if not message.reply_to_message.from_user:
             return
         from_user_id = message.reply_to_message.from_user.id
-        if from_user_id != bot_id:
+        if from_user_id != TOKEN:
             return
     else:
         match = re.search(
