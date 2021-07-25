@@ -1,6 +1,6 @@
 from Ichigo import LOG_GRP
 from pyrogram import Client
-BOT_ID = 0
+BOT_ID = 1690374847
 BOT_NAME = ""
 
 async def get_info(Client):
