@@ -57,9 +57,10 @@ async def chatbot_talk(_, message):
         return
     if message.reply_to_message.from_user.id == BOT_ID:
         return
+    user_id = message.from_user.id
     query = message.text
-    luna = await arq.luna(query)
-    response = luna.response
+    response = await arq.luna(query, user_id).result
+    #response = luna.response
     await app.send_chat_action(message.chat.id, "typing")
     await message.reply_text(response)
     
