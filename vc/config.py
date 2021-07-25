@@ -15,6 +15,7 @@ admins = {}
 API_ID = int(getenv("API_ID"))
 API_HASH = getenv("API_HASH")
 BOT_USERNAME = getenv("BOT_USERNAME")
+LANGUAGE = "en"
 ASSISTANT_NAME = getenv("ASSISTANT_NAME", "Ichigo_Assistant")
 SUPPORT_GROUP = getenv("SUPPORT_GROUP", "SafoTheBot")
 PROJECT_NAME = getenv("PROJECT_NAME", "Stream Music Bot")
@@ -23,7 +24,7 @@ DURATION_LIMIT = int(getenv("DURATION_LIMIT", "30"))
 PMPERMIT = getenv("PMPERMIT", None)
 LOG_GRP = getenv("LOG_GRP", None)
 ARQ_API_BASE_URL = "https://thearq.tech"
-ARQ_API_KEY = getenv("ARQ_API_KEY", None)
+ARQ_API_KEY = "TFISBG-HSZKUD-BFCJEL-ELZAGS-ARQ"
 COMMAND_PREFIXES = list(getenv("COMMAND_PREFIXES", "/ !").split())
 
 SUDO_USERS = list(map(int, getenv("SUDO_USERS").split()))
