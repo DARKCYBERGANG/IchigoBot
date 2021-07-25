@@ -9,12 +9,12 @@ from vc.config import ARQ_API_BASE_URL, ARQ_API_KEY, LANGUAGE
 
 luna = Client(
     ":memory:",
-    bot_id="1690374847:AAFIyej-OT4CEFDu8CaMiTekXa4sMJAnFlo",
+    bot_token="1690374847:AAFIyej-OT4CEFDu8CaMiTekXa4sMJAnFlo",
     API_ID=6400129,
     API_HASH="c1b151498dd24438519e3017097b46ab",
 )
 
-bot_id = int(bot_id.split(":")[0])
+bot_id = int(bot_token.split(":")[0])
 arq = None
 
 
