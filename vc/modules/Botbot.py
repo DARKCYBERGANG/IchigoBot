@@ -54,7 +54,7 @@ async def repo(_, message):
 
 @Client.on_message(filters.command("help") & ~filters.edited)
 async def start(_, message):
-    await luna.send_chat_action(message.chat.id, "typing")
+    await Client.send_chat_action(message.chat.id, "typing")
     await sleep(2)
     await message.reply_text("/repo - Get Repo Link")
 
