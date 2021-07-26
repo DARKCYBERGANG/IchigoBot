@@ -15,7 +15,6 @@ luna = Client(
 )
 bot_token="1690374847:AAFIyej-OT4CEFDu8CaMiTekXa4sMJAnFlo"
 bot_id = int(bot_token.split(":")[0])
-arq = None
 
 
 async def lunaQuery(query: str, user_id: int):
