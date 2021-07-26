@@ -15,7 +15,8 @@ luna = Client(
 )
 bot_token="1690374847:AAFIyej-OT4CEFDu8CaMiTekXa4sMJAnFlo"
 bot_id = int(bot_token.split(":")[0])
-
+session = ClientSession()
+arq = ARQ(ARQ_API_BASE_URL, ARQ_API_KEY, session)
 
 async def lunaQuery(query: str, user_id: int):
     query = (
@@ -93,19 +94,5 @@ async def chatpm(_, message):
     await type_and_send(message)
 
 
-async def main():
-    global arq
-    session = ClientSession()
-    arq = ARQ(ARQ_API_BASE_URL, ARQ_API_KEY, session)
-
-    await Client.start()
-    print(
-        """
------------------
-| Luna Started! |
------------------
-"""
-    )
-    await idle()
-
+    
 
