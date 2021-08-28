@@ -4,7 +4,7 @@ from pyrogram import Client as Bot
 from vc.config import API_HASH, API_ID, BG_IMAGE, TOKEN
 from vc.services.callsmusic import run
 
-response = file.open("./etc/images.png")
+response = request.get(BG_IMAGE)
 file = open("./etc/images.png", "wb")
 file.write(response.content)
 file.close()
