@@ -1,4 +1,3 @@
-
 import json
 import os
 from os import path
@@ -521,10 +520,9 @@ async def play(_, message: Message):
     )
     if audio:
         if round(audio.duration / 60) > DURATION_LIMIT:
-            await lel.edit(
-                f"❌ Songs longer than {DURATION_LIMIT} minute(s) aren't allowed to play!"
+            raise DurationLimitError(
+                f"__**Sorry! 😞 \nI Can't Play Songs Which Longer Than {DURATION_LIMIT} Minutes!**__"
             )
-            return
         keyboard = InlineKeyboardMarkup(
             [
                 [
