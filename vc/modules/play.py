@@ -521,11 +521,8 @@ async def play(_, message: Message):
     )
     if audio:
         if round(audio.duration / 60) > DURATION_LIMIT:
-            raise DurationLimitError(
-                f"__**Sorry! 😞 \nI Can't Play Songs Which Longer Than {DURATION_LIMIT} Minutes!**__"
-            )
-            await lel.edit(f"__**Sorry! 😞 \nI Can't Play Songs Which Longer Than {DURATION_LIMIT} Minutes!**__")
-            
+            await lel.edit(Sorry! 😞 \nI Can't Play Songs Which Longer Than {DURATION_LIMIT} Minutes!)
+            return
         keyboard = InlineKeyboardMarkup(
             [
                 [
