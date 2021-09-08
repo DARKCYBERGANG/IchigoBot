@@ -59,4 +59,4 @@ ffmpeg-python
 python-arq
 wget
 wheel
-py-tgcalls==0.8.0
+py-tgcalls==0.5.5
