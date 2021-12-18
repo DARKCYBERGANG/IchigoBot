@@ -40,7 +40,7 @@ tswift
 pyowm
 tabulate
 parsel
-pyrogram==1.2.9
+git+https://github.com/pyrogram/pyrogram@master
 Tgcrypto==1.2.2
 telegraph
 pytz
